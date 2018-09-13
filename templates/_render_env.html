@@ -1,5 +1,5 @@
-{% macro render_env(name, envs) -%}
-<div id="tab-{{ name }}" class="env-tab">
+{% macro render_env(name, envs, active=False) -%}
+<div id="tab-{{ name }}" class="env-tab" {% if active %}style="display:block"{% endif %}>
   <div class="siimple-grid-row">
     <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
       <div class="siimple-h3">{{ envs[name].webserver_ip }}</div>
