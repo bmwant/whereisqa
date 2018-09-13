@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Where is QA?</title>
+
+  <link rel="stylesheet" href="/node_modules/siimple/dist/siimple.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/moment/moment.js"></script>
+  <script src="/static/js/main.js"></script>
+</head>
+<body>
+  <div class="siimple-navbar siimple-navbar--yellow siimple-navbar--fluid">
+    <div class="siimple-layout--left">
+      <a href="/" class="siimple-navbar-title">whereisqa</a>
+    </div>
+    <div class="siimple-layout--right">
+      <a href="#" class="siimple-navbar-link" target="_blank">github</a>
+    </div>
+  </div>
+  <div class="siimple-grid">
+
+    <div class="siimple-grid-row">
+        <div class="siimple-tabs siimple-tabs--boxed">
+            <div class="siimple-tabs-item siimple-tabs-item--selected">QA</div>
+            <div class="siimple-tabs-item">UX</div>
+            <div class="siimple-tabs-item">PPE</div>
+            <div class="siimple-tabs-item">Production</div>
+        </div>
+    </div>
+
+    <div class="siimple-grid-row">
+      <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
+        <div class="siimple-h3">127.90.2.2</div>
+        <span class="siimple-tag siimple-tag--blue">webserver</span>
+      </div>
+      <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
+        <div class="siimple-h3">127.90.2.3</div>
+        <span class="siimple-tag siimple-tag--green">worker</span>
+      </div>
+      <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
+        <div class="siimple-h3">127.90.2.4</div>
+        <span class="siimple-tag siimple-tag--teal">scheduler</span>
+      </div>
+    </div>
+
+    <div class="siimple-grid-row">
+      <div class="siimple-grid-col siimple-grid-col--6">
+        <div class="siimple-tip siimple-tip--blue siimple-tip--question">
+          Connect to the <strong>webserver</strong> using command below
+        </div>
+        <div class="siimple-alert siimple--color-white siimple--bg-dark">
+            $ ssh ubuntu@127.9.89.1 -i ~/.ssh/gc2-ppe.pem
+        </div>
+
+        <div class="siimple-tip siimple-tip--green siimple-tip--question">
+          Connect to the <strong>worker</strong> using command below
+        </div>
+        <div class="siimple-alert siimple--color-white siimple--bg-dark">
+            $ ssh ubuntu@127.9.89.1 -i ~/.ssh/gc2-ppe.pem
+        </div>
+
+        <div class="siimple-tip siimple-tip--teal siimple-tip--question">
+          Connect to the <strong>scheduler</strong> using command below
+        </div>
+        <div class="siimple-alert siimple--color-white siimple--bg-dark">
+          $ ssh ubuntu@127.9.89.1 -i ~/.ssh/gc2-ppe.pem
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
