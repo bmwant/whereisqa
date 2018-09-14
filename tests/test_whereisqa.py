@@ -6,8 +6,6 @@
 import pytest
 
 
-from whereisqa import whereisqa
-
 
 @pytest.fixture
 def response():

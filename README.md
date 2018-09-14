@@ -1,6 +1,5 @@
-=========
-whereisqa
-=========
+## whereisqa
+
 
 
 .. image:: https://img.shields.io/pypi/v/whereisqa.svg
@@ -23,15 +22,21 @@ Latest updated info about current infrastructure
 * Documentation: https://whereisqa.readthedocs.io.
 
 
-Features
---------
+### Features
 
 * TODO
 
-Credits
--------
+### Deployment
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+```
+$ heroku create
+$ heroku buildpacks:add heroku/python
+$ heroku config:set AWS_ACCESS_KEY_ID='<your-key-id>'
+$ heroku config:set AWS_SECRET_ACCESS_KEY='<your-secret-key'
+```
+and then (do the same for redeploys)
+```
+$ git push heroku master
+```
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+### Donate
