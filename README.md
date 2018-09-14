@@ -33,6 +33,10 @@ $ heroku buildpacks:add heroku/python
 $ heroku buildpacks:add heroku/nodejs
 $ heroku config:set AWS_ACCESS_KEY_ID='<your-key-id>'
 $ heroku config:set AWS_SECRET_ACCESS_KEY='<your-secret-key'
+$ heroku config:set NODE_ENV=test
+$ heroku config:set NODE_MODULES_CACHE=false
+$ heroku config:set NODE_VERBOSE=true
+
 ```
 and then (do the same for redeploys)
 ```
