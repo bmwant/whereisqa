@@ -7,8 +7,9 @@ TEMPLATES_DIR = PROJECT_ROOT / 'templates'
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 
-USERNAME = ''
-PASSWORD = ''
+# Credentials for basic authentication
+AUTH_USERNAME = ''
+AUTH_PASSWORD = ''
 
 # Override values from config_local.py
 try:

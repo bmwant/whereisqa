@@ -1,24 +1,11 @@
 ## whereisqa
 
 
-.. image:: https://img.shields.io/pypi/v/whereisqa.svg
-        :target: https://pypi.python.org/pypi/whereisqa
-
-.. image:: https://img.shields.io/travis/bmwant/whereisqa.svg
-        :target: https://travis-ci.org/bmwant/whereisqa
-
-.. image:: https://readthedocs.org/projects/whereisqa/badge/?version=latest
-        :target: https://whereisqa.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
+[![](https://img.shields.io/pypi/v/whereisqa.svg)](https://pypi.python.org/pypi/whereisqa)
+[![](https://img.shields.io/travis/bmwant/whereisqa.svg)](https://travis-ci.org/bmwant/whereisqa)
 
 
 Latest updated info about current infrastructure
-
-
-* Free software: MIT license
-* Documentation: https://whereisqa.readthedocs.io.
 
 
 ### Features
@@ -36,7 +23,8 @@ $ heroku config:set AWS_SECRET_ACCESS_KEY='<your-secret-key'
 $ heroku config:set NODE_ENV=test
 $ heroku config:set NODE_MODULES_CACHE=false
 $ heroku config:set NODE_VERBOSE=true
-
+$ heroku config:set AUTH_USERNAME='<your-secret-username>'
+$ heroku config:set AUTH_PASSWORD='<your-secret-password>'
 ```
 and then (do the same for redeploys)
 ```

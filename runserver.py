@@ -12,13 +12,13 @@ from whereisqa import setup_routes, setup_static_routes
 
 
 def check_access(auth):
-    credentials = (b'Basic ' +
-                   base64.b64encode(f'{config.USERNAME}:{config.PASSWORD}'.encode())).decode()
-    return auth == credentials
+    creds = f'{config.AUTH_USERNAME}:{config.AUTH_PASSWORD}'.encode()
+    auth_header = (b'Basic ' + base64.b64encode(creds)).decode()
+    return auth == auth_header
 
 
 @web.middleware
-async def middleware(request, handler):
+async def auth_middleware(request, handler):
     if not check_access(request.headers.get('Authorization', '')):
         raise web.HTTPUnauthorized(headers={'WWW-Authenticate': 'Basic'})
 
@@ -26,7 +26,7 @@ async def middleware(request, handler):
 
 
 def run():
-    app = web.Application(middlewares=[middleware])
+    app = web.Application(middlewares=[auth_middleware])
     setup_routes(app)
     setup_static_routes(app)
     aiohttp_jinja2.setup(
