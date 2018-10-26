@@ -1,4 +1,5 @@
 import os
+import base64
 from functools import partial
 
 import jinja2
@@ -10,8 +11,22 @@ import config
 from whereisqa import setup_routes, setup_static_routes
 
 
+def check_access(auth):
+    credentials = (b'Basic ' +
+                   base64.b64encode(f'{config.USERNAME}:{config.PASSWORD}'.encode())).decode()
+    return auth == credentials
+
+
+@web.middleware
+async def middleware(request, handler):
+    if not check_access(request.headers.get('Authorization', '')):
+        raise web.HTTPUnauthorized(headers={'WWW-Authenticate': 'Basic'})
+
+    return await handler(request)
+
+
 def run():
-    app = web.Application()
+    app = web.Application(middlewares=[middleware])
     setup_routes(app)
     setup_static_routes(app)
     aiohttp_jinja2.setup(

@@ -1,8 +1,5 @@
 import aiohttp_jinja2
-from aiohttp import web
-from aiohttp import hdrs
 
-import config
 from whereisqa.instances import create_inventory
 from whereisqa.utils import logger
 
