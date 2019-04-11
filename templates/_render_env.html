@@ -4,20 +4,32 @@
     {# webservers #}
     <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--blue">webserver</span>
+      {% if envs[name].webservers | length > 1 %}
+        <span class="siimple-tag siimple-tag--blue">x{{ envs[name].webservers | length }}</span>
+      {% endif %}
+
       {% for instance_ip in envs[name].webservers %}
-      <div class="siimple-h3">{{ instance_ip }}</div>
+        <div class="siimple-h3">{{ instance_ip }}</div>
       {% endfor %}
     </div>
     {# workers #}
     <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--green">worker</span>
+        {% if envs[name].workers | length > 1 %}
+        <span class="siimple-tag siimple-tag--green">x{{ envs[name].workers | length }}</span>
+      {% endif %}
+
       {% for instance_ip in envs[name].workers %}
-      <div class="siimple-h3">{{ instance_ip }}</div>
+        <div class="siimple-h3">{{ instance_ip }}</div>
       {% endfor %}
     </div>
     {# schedulers #}
     <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--teal">scheduler</span>
+      {% if envs[name].schedulers | length > 1 %}
+        <span class="siimple-tag siimple-tag--teal">x{{ envs[name].schedulers | length }}</span>
+      {% endif %}
+
       {% for instance_ip in envs[name].schedulers %}
       <div class="siimple-h3">{{ instance_ip }}</div>
       {% endfor %}
@@ -30,21 +42,21 @@
         Connect to a <strong>webserver</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
-        $ ssh ubuntu@{{ envs[name].webserver_ip }} -i ~/.ssh/gc2-ppe.pem
+        $ ssh ubuntu@{{ envs[name].webservers | first }} -i ~/.ssh/gc2-ppe.pem
       </div>
 
       <div class="siimple-tip siimple-tip--green siimple-tip--question">
         Connect to a <strong>worker</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
-        $ ssh ubuntu@{{ envs[name].worker_ip }} -i ~/.ssh/gc2-ppe.pem
+        $ ssh ubuntu@{{ envs[name].workers | first }} -i ~/.ssh/gc2-ppe.pem
       </div>
 
       <div class="siimple-tip siimple-tip--teal siimple-tip--question">
         Connect to a <strong>scheduler</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
-        $ ssh ubuntu@{{ envs[name].scheduler_ip }} -i ~/.ssh/gc2-ppe.pem
+        $ ssh ubuntu@{{ envs[name].schedulers | first }} -i ~/.ssh/gc2-ppe.pem
       </div>
     </div>
   </div>
