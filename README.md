@@ -8,7 +8,8 @@ Latest updated info about current infrastructure
 
 ### Features
 
-* TODO
+* Show webserver/worker/scheduler instances for each environment
+* Show ssh connection hint
 
 ### Development
 
@@ -54,6 +55,7 @@ $ poetry run runserver.py
 Export poetry requirements to regular `requirements.txt` file first
  
 ```bash
+$ poetry self:update --preview  # to be able use export feature
 $ poetry export -f requirements.txt
 ```
 
