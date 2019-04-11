@@ -4,5 +4,9 @@
 
 .siimple-tabs-item {
   border-top-left-radius: 0;
-     border-top-right-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.instances-ips .siimple-h3:not(:first-child) {
+  margin-top: 15px;
 }

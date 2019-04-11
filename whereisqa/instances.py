@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from typing import List
+from dataclasses import dataclass, field
 
 import boto3
 
@@ -9,20 +10,18 @@ from whereisqa.utils import logger
 @dataclass
 class Environment:
     name: str = ''
-    webserver_ip: str = ''
-    worker_ip: str = ''
-    scheduler_ip: str = ''
-
-
-ENVIRONMENTS = {
-    'qa': Environment(name='qa'),
-    'ux': Environment(name='ux'),
-    'ppe': Environment(name='ppe'),
-    'prod': Environment(name='prod'),
-}
+    webservers: List[str] = field(default_factory=lambda: [])
+    workers: List[str] = field(default_factory=lambda: [])
+    schedulers: List[str] = field(default_factory=lambda: [])
 
 
 def create_inventory():
+    inventory = {
+        'qa': Environment(name='qa'),
+        'ux': Environment(name='ux'),
+        'ppe': Environment(name='ppe'),
+        'prod': Environment(name='prod'),
+    }
     ec2 = boto3.client(
         'ec2',
         region_name='us-east-1',
@@ -46,16 +45,16 @@ def create_inventory():
             logger.debug('Ignoring %s instance', instance_id)
             continue
 
-        env = get_tag_value('env', tags, strict=False)
+        env_name = get_tag_value('env', tags, strict=False)
         instance_type = get_tag_value('type', tags, strict=False)
-        if env is None or instance_type is None:
+        if env_name is None or instance_type is None:
             logger.debug('%s is not our target instance, '
                          'missing required tags', instance_id)
             continue
 
-        update_record(env, instance_type, ip)
+        update_record(inventory, env_name, instance_type, ip)
 
-    return ENVIRONMENTS
+    return inventory
 
 
 def get_tag_value(key, tags, *, strict=True):
@@ -67,7 +66,8 @@ def get_tag_value(key, tags, *, strict=True):
         raise ValueError('No such key %s' % key)
 
 
-def update_record(env_name, instance_type, ip_address):
+# todo (misha): this one is not pure function. Consider refactoring
+def update_record(inventory, env_name, instance_type, ip_address):
     def get_env_key():
         mapping = {
             'qa': 'qa',
@@ -82,6 +82,6 @@ def update_record(env_name, instance_type, ip_address):
         logger.debug('env %s ignored', env_key)
         return
 
-    env = ENVIRONMENTS[env_key]
-    prop = f'{instance_type}_ip'
-    setattr(env, prop, ip_address)
+    env = inventory[env_key]
+    prop = f'{instance_type}s'
+    getattr(env, prop).append(ip_address)

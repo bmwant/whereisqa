@@ -1,38 +1,47 @@
 {% macro render_env(name, envs, active=False) -%}
 <div id="tab-{{ name }}" class="env-tab" {% if active %}style="display:block"{% endif %}>
   <div class="siimple-grid-row">
-    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
-      <div class="siimple-h3">{{ envs[name].webserver_ip }}</div>
+    {# webservers #}
+    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--blue">webserver</span>
+      {% for instance_ip in envs[name].webservers %}
+      <div class="siimple-h3">{{ instance_ip }}</div>
+      {% endfor %}
     </div>
-    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
-      <div class="siimple-h3">{{ envs[name].worker_ip }}</div>
+    {# workers #}
+    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--green">worker</span>
+      {% for instance_ip in envs[name].workers %}
+      <div class="siimple-h3">{{ instance_ip }}</div>
+      {% endfor %}
     </div>
-    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center">
-      <div class="siimple-h3">{{ envs[name].scheduler_ip }}</div>
+    {# schedulers #}
+    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--teal">scheduler</span>
+      {% for instance_ip in envs[name].schedulers %}
+      <div class="siimple-h3">{{ instance_ip }}</div>
+      {% endfor %}
     </div>
   </div>
 
   <div class="siimple-grid-row">
     <div class="siimple-grid-col siimple-grid-col--6">
       <div class="siimple-tip siimple-tip--blue siimple-tip--question">
-        Connect to the <strong>webserver</strong> using command below
+        Connect to a <strong>webserver</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
         $ ssh ubuntu@{{ envs[name].webserver_ip }} -i ~/.ssh/gc2-ppe.pem
       </div>
 
       <div class="siimple-tip siimple-tip--green siimple-tip--question">
-        Connect to the <strong>worker</strong> using command below
+        Connect to a <strong>worker</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
         $ ssh ubuntu@{{ envs[name].worker_ip }} -i ~/.ssh/gc2-ppe.pem
       </div>
 
       <div class="siimple-tip siimple-tip--teal siimple-tip--question">
-        Connect to the <strong>scheduler</strong> using command below
+        Connect to a <strong>scheduler</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
         $ ssh ubuntu@{{ envs[name].scheduler_ip }} -i ~/.ssh/gc2-ppe.pem
