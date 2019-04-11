@@ -1,7 +1,5 @@
 ## whereisqa
 
-
-[![](https://img.shields.io/pypi/v/whereisqa.svg)](https://pypi.python.org/pypi/whereisqa)
 [![](https://img.shields.io/travis/bmwant/whereisqa.svg)](https://travis-ci.org/bmwant/whereisqa)
 
 
@@ -11,6 +9,19 @@ Latest updated info about current infrastructure
 ### Features
 
 * TODO
+
+### Development
+
+Examples of using [Poetry](https://poetry.eustace.io/)
+
+```bash
+$ pyenv local 3.7.2
+$ poetry init
+$ poetry add
+$ poetry add --dev tox
+$ poetry install
+$ poetry update
+```
 
 ### Deployment
 
