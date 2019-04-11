@@ -23,7 +23,39 @@ $ poetry install
 $ poetry update
 ```
 
+Install dependencies
+
+```bash
+$ npm install
+$ poetry install
+```
+
+Make sure you have provided all the credentials needed. For that create 
+`config_local.py` and fill with corresponding values
+
+```text
+# AWS credentials
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+
+# Credentials for basic authentication
+AUTH_USERNAME = ''
+AUTH_PASSWORD = ''
+```
+
+Launch server locally
+
+```bash
+$ poetry run runserver.py
+```
+
 ### Deployment
+
+Export poetry requirements to regular `requirements.txt` file first
+ 
+```bash
+$ poetry export -f requirements.txt
+```
 
 ```
 $ heroku create
@@ -37,7 +69,9 @@ $ heroku config:set NODE_VERBOSE=true
 $ heroku config:set AUTH_USERNAME='<your-secret-username>'
 $ heroku config:set AUTH_PASSWORD='<your-secret-password>'
 ```
+
 and then (do the same for redeploys)
+
 ```
 $ git push heroku master
 ```
