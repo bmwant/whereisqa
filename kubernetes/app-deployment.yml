@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: whereisqa
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: whereisqa
+        server: aiohttp
+    spec:
+      containers:
+        - name: whereisqa
+          image: 457398059321.dkr.ecr.us-east-1.amazonaws.com/whereisqa:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: AUTH_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-config
+                  key: auth_username
+            - name: AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-config
+                  key: auth_password
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: app-config
+                  key: aws_key
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: app-config
+                  key: aws_secret
+      restartPolicy: Always
