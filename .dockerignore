@@ -4,3 +4,7 @@ config_local.py
 requirements.txt
 .eggs/
 *.egg-info/
+setup.cfg
+MANIFEST.in
+node_modules/
+

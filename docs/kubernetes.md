@@ -8,6 +8,13 @@ $ $(aws ecr get-login --no-include-email --region us-east-1)
 $ docker push 457398059321.dkr.ecr.us-east-1.amazonaws.com/whereisqa:latest
 ```
 
+When running locally do not forget to mount either source code or `config_local.py` file or
+just pass required environment variables when launching container
+
+```bash
+$ docker run -it -v $(pwd):/opt/app -p 8080:8080 whereisqa
+```
+
 ### Running on Kubernetes
 
 ```bash
@@ -59,3 +66,12 @@ $ minikube service whereisqa --url
 ```
 
 and visit the url provided.
+
+
+### Troubleshooting
+
+* `Waiting for SSH access...` takes too long
+
+```bash
+$ rm -rf ~/.minikube/machines/minikube/hyperkit.pid
+```

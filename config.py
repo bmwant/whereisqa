@@ -4,6 +4,7 @@ from pathlib import Path
 
 PROJECT_ROOT = Path(os.path.dirname(os.path.realpath(__file__)))
 TEMPLATES_DIR = PROJECT_ROOT / 'templates'
+AWS_DEFAULT_REGION = 'us-east-1'
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 
