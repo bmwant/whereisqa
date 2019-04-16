@@ -36,4 +36,6 @@ spec:
                 secretKeyRef:
                   name: app-config
                   key: aws_secret
+      imagePullSecrets:
+        - name: awsecr-cred
       restartPolicy: Always

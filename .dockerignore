@@ -1,0 +1,6 @@
+kubernetes/
+docs/
+config_local.py
+requirements.txt
+.eggs/
+*.egg-info/

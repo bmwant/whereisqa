@@ -13,6 +13,15 @@ $ docker push 457398059321.dkr.ecr.us-east-1.amazonaws.com/whereisqa:latest
 ```bash
 $ minikube start --vm-driver=hyperkit
 $ minikube dashboard
+$ kubectl config get-contexts
+$ kubectl config use-context minikube
+```
+
+Enable pulling containers from AWS
+
+```bash
+$ minikube addons configure registry-creds
+$ minikube addons enable registry-creds
 ```
 
 Create secrets
@@ -34,11 +43,19 @@ $ kubectl create -f kubernetes/app-service.yml
 $ kubectl get pods
 ```
 
+Add ingress for a service
+
+```bash
+$ 
+
+```
+
 Check app is running
 
 ```bash
 $ kubectl get services
 $ echo $(minikube ip)
+$ minikube service whereisqa --url
 ```
 
-and visit that IP-address in your browser with `30080` port provided.
+and visit the url provided.

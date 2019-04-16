@@ -5,10 +5,8 @@ metadata:
   labels:
     server: aiohttp
 spec:
-  type: NodePort
   selector:
     app: whereisqa
   ports:
     - port: 8080
-      nodePort: 30080
-      name: http
+  type: NodePort
