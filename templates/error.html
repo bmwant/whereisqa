@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error page</title>
+
+  <link href="/static/favicon.ico" rel="icon" type="image/x-icon">
+
+  <link rel="stylesheet" href="/node_modules/siimple/dist/siimple.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/moment/moment.js"></script>
+  <script src="/static/js/main.js"></script>
+</head>
+<body>
+  <div class="siimple-navbar siimple-navbar--red siimple-navbar--fluid">
+    <div class="siimple-layout--left">
+      <a href="#" class="siimple-navbar-title">{{ title }}</a>
+    </div>
+  </div>
+  <div class="siimple-grid">
+    <div class="siimple-grid-row">
+      <div class="siimple-grid-col siimple-grid-col--6">
+        <div class="siimple-alert siimple-alert--error">
+          <pre><code>{{ message }}</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
