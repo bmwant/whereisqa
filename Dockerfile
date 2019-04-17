@@ -1,6 +1,8 @@
 # base image
 FROM python:3.7.2-slim
 
+ARG APP_HOME=/opt/app
+
 # install required libraries
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -17,13 +19,17 @@ RUN bash nodesource_setup.sh
 RUN apt-get install -y \
     nodejs
 
+# create user and group both named `user`
+RUN groupadd -r user && useradd --create-home -r -g user user
+RUN mkdir -p $APP_HOME && chown -R user:user $APP_HOME
+USER user
+
 # install poetry
 RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
-# use a user
-ENV PATH "/root/.poetry/bin:${PATH}"
+ENV PATH "/home/user/.poetry/bin:${PATH}"
 
 # set working directory
-WORKDIR /opt/app
+WORKDIR $APP_HOME
 
 # add and install js requirements
 COPY package.json .
@@ -31,12 +37,12 @@ COPY package-lock.json .
 RUN npm install
 
 # add and install python requirements
-COPY pyproject.toml pyproject.toml
-COPY poetry.lock poetry.lock
+COPY pyproject.toml .
+COPY poetry.lock .
 RUN poetry install
 
 # bake code in
-COPY . /opt/app
+COPY . $APP_HOME
 
 # run server
 CMD ["poetry", "run", "python", "runserver.py"]

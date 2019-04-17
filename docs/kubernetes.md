@@ -67,6 +67,18 @@ $ minikube service whereisqa --url
 
 and visit the url provided.
 
+### Scaling
+Launch more replicas for specific deployment
+
+```bash
+$ kubectl scale --replicas=3 deployment whereisqa
+```
+
+Scale down to 1 replica
+
+```bash
+$ kubectl scale --replicas=1 deployment whereisqa
+```
 
 ### Troubleshooting
 
@@ -74,4 +86,13 @@ and visit the url provided.
 
 ```bash
 $ rm -rf ~/.minikube/machines/minikube/hyperkit.pid
+```
+
+* `Unable to validate`
+
+restart docker machine
+
+```bash
+$ minikube stop
+$ minikube start
 ```
