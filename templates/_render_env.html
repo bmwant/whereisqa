@@ -2,7 +2,7 @@
 <div id="tab-{{ name }}" class="env-tab" {% if active %}style="display:block"{% endif %}>
   <div class="siimple-grid-row">
     {# webservers #}
-    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
+    <div class="siimple-grid-col siimple-grid-col--3 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--blue">webserver</span>
       {% if envs[name].webservers | length > 1 %}
         <span class="siimple-tag siimple-tag--blue">x{{ envs[name].webservers | length }}</span>
@@ -13,7 +13,7 @@
       {% endfor %}
     </div>
     {# workers #}
-    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
+    <div class="siimple-grid-col siimple-grid-col--3 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--green">worker</span>
         {% if envs[name].workers | length > 1 %}
         <span class="siimple-tag siimple-tag--green">x{{ envs[name].workers | length }}</span>
@@ -24,7 +24,7 @@
       {% endfor %}
     </div>
     {# schedulers #}
-    <div class="siimple-grid-col siimple-grid-col--2 siimple--text-center instances-ips">
+    <div class="siimple-grid-col siimple-grid-col--3 siimple--text-center instances-ips">
       <span class="siimple-tag siimple-tag--teal">scheduler</span>
       {% if envs[name].schedulers | length > 1 %}
         <span class="siimple-tag siimple-tag--teal">x{{ envs[name].schedulers | length }}</span>
@@ -37,12 +37,17 @@
   </div>
 
   <div class="siimple-grid-row">
-    <div class="siimple-grid-col siimple-grid-col--6">
+    <div class="siimple-grid-col siimple-grid-col--9">
       <div class="siimple-tip siimple-tip--blue siimple-tip--question">
         Connect to a <strong>webserver</strong> using command below
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
         $ ssh ubuntu@{{ envs[name].webservers | first }} -i ~/.ssh/gc2-ppe.pem
+        <div class="siimple--float-right">
+          <button class="siimple-btn siimple-btn--grey siimple-btn--small" title="Copy to clipboard">
+            <i data-feather="clipboard"></i>
+          </button>
+        </div>
       </div>
 
       <div class="siimple-tip siimple-tip--green siimple-tip--question">
@@ -50,6 +55,11 @@
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
         $ ssh ubuntu@{{ envs[name].workers | first }} -i ~/.ssh/gc2-ppe.pem
+        <div class="siimple--float-right">
+          <button class="siimple-btn siimple-btn--grey siimple-btn--small" title="Copy to clipboard">
+            <i data-feather="clipboard"></i>
+          </button>
+        </div>
       </div>
 
       <div class="siimple-tip siimple-tip--teal siimple-tip--question">
@@ -57,6 +67,11 @@
       </div>
       <div class="siimple-alert siimple--color-white siimple--bg-dark">
         $ ssh ubuntu@{{ envs[name].schedulers | first }} -i ~/.ssh/gc2-ppe.pem
+        <div class="siimple--float-right">
+          <button class="siimple-btn siimple-btn--grey siimple-btn--small" title="Copy to clipboard">
+            <i data-feather="clipboard"></i>
+          </button>
+        </div>
       </div>
     </div>
   </div>

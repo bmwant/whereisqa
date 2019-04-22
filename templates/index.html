@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="siimple-grid">
-
   <div class="siimple-grid-row">
     <div class="siimple-tabs siimple-tabs--boxed">
       <div id="qa" class="siimple-tabs-item siimple-tabs-item--selected">QA</div>
@@ -10,11 +9,13 @@
       <div id="prod" class="siimple-tabs-item">Production</div>
     </div>
   </div>
-  <!-- loops are for losers, right? -->
-  {% import '_render_env.html' as tab %}
-  {{ tab.render_env('qa', envs, active=True) }}
-  {{ tab.render_env('ux', envs) }}
-  {{ tab.render_env('ppe', envs) }}
-  {{ tab.render_env('prod', envs) }}
+  <div class="siimple-grid-row">
+    <!-- loops are for losers, right? -->
+    {% import '_render_env.html' as tab %}
+    {{ tab.render_env('qa', envs, active=True) }}
+    {{ tab.render_env('ux', envs) }}
+    {{ tab.render_env('ppe', envs) }}
+    {{ tab.render_env('prod', envs) }}
+  </div>
 </div>
 {% endblock %}

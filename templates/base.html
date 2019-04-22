@@ -11,11 +11,12 @@
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/moment/moment.js"></script>
+  <script src="/node_modules/feather-icons/dist/feather.js"></script>
   <script src="/static/js/main.js"></script>
 </head>
 <body>
   {% block header %}
-  <div class="siimple-navbar siimple-navbar--yellow siimple-navbar--fluid">
+  <div class="siimple-navbar siimple-navbar--yellow siimple-navbar--extra-large">
     <div class="siimple-layout--left">
       <a href="/" class="siimple-navbar-title">whereisqa</a>
     </div>
@@ -24,6 +25,11 @@
     </div>
   </div>
   {% endblock %}
-  {% block content %}{% endblock %}
+  <div class="siimple-content--extra-large">
+    {% block content %}{% endblock %}
+  </div>
+  <script>
+    feather.replace()
+  </script>
 </body>
 </html>

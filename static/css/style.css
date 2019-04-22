@@ -2,9 +2,18 @@
   display: none;
 }
 
+/* siimple overrides */
 .siimple-tabs-item {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.siimple-alert .siimple--float-right{
+  margin-right: -15px;
+}
+
+.siimple-btn--small {
+  padding: 0 5px;
 }
 
 .instances-ips .siimple-h3:not(:first-child) {
