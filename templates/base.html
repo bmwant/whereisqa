@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Where is QA?{% endblock %}</title>
+
+  <link href="/static/favicon.ico" rel="icon" type="image/x-icon">
+
+  <link rel="stylesheet" href="/node_modules/siimple/dist/siimple.min.css">
+  <link rel="stylesheet" href="/static/css/style.css">
+
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/moment/moment.js"></script>
+  <script src="/static/js/main.js"></script>
+</head>
+<body>
+  {% block header %}
+  <div class="siimple-navbar siimple-navbar--yellow siimple-navbar--fluid">
+    <div class="siimple-layout--left">
+      <a href="/" class="siimple-navbar-title">whereisqa</a>
+    </div>
+    <div class="siimple-layout--right">
+      <a href="https://github.com/bmwant/whereisqa" class="siimple-navbar-link" target="_blank">github</a>
+    </div>
+  </div>
+  {% endblock %}
+  {% block content %}{% endblock %}
+</body>
+</html>

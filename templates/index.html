@@ -1,43 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Where is QA?</title>
+{% extends "base.html" %}
+{% block content %}
+<div class="siimple-grid">
 
-  <link href="/static/favicon.ico" rel="icon" type="image/x-icon">
-
-  <link rel="stylesheet" href="/node_modules/siimple/dist/siimple.min.css">
-  <link rel="stylesheet" href="/static/css/style.css">
-
-  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="/node_modules/moment/moment.js"></script>
-  <script src="/static/js/main.js"></script>
-</head>
-<body>
-  <div class="siimple-navbar siimple-navbar--yellow siimple-navbar--fluid">
-    <div class="siimple-layout--left">
-      <a href="/" class="siimple-navbar-title">whereisqa</a>
-    </div>
-    <div class="siimple-layout--right">
-      <a href="https://github.com/bmwant/whereisqa" class="siimple-navbar-link" target="_blank">github</a>
+  <div class="siimple-grid-row">
+    <div class="siimple-tabs siimple-tabs--boxed">
+      <div id="qa" class="siimple-tabs-item siimple-tabs-item--selected">QA</div>
+      <div id="ux" class="siimple-tabs-item">UX</div>
+      <div id="ppe" class="siimple-tabs-item">PPE</div>
+      <div id="prod" class="siimple-tabs-item">Production</div>
     </div>
   </div>
-  <div class="siimple-grid">
-
-    <div class="siimple-grid-row">
-      <div class="siimple-tabs siimple-tabs--boxed">
-          <div id="qa" class="siimple-tabs-item siimple-tabs-item--selected">QA</div>
-          <div id="ux" class="siimple-tabs-item">UX</div>
-          <div id="ppe" class="siimple-tabs-item">PPE</div>
-          <div id="prod" class="siimple-tabs-item">Production</div>
-      </div>
-    </div>
-    <!-- loops are for losers, right? -->
-    {% import '_render_env.html' as tab %}
-    {{ tab.render_env('qa', envs, active=True) }}
-    {{ tab.render_env('ux', envs) }}
-    {{ tab.render_env('ppe', envs) }}
-    {{ tab.render_env('prod', envs) }}
-  </div>
-</body>
-</html>
+  <!-- loops are for losers, right? -->
+  {% import '_render_env.html' as tab %}
+  {{ tab.render_env('qa', envs, active=True) }}
+  {{ tab.render_env('ux', envs) }}
+  {{ tab.render_env('ppe', envs) }}
+  {{ tab.render_env('prod', envs) }}
+</div>
+{% endblock %}

@@ -9,6 +9,7 @@
     "author": "Misha Behersky",
     "license": "MIT",
     "dependencies": {
+        "feather-icons": "^4.21.0",
         "jquery": "^3.3.1",
         "moment": "^2.20.1",
         "siimple": "^3.0.0"

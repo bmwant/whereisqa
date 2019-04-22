@@ -11,6 +11,8 @@ AWS_SECRET_ACCESS_KEY = ''
 AUTH_USERNAME = ''
 AUTH_PASSWORD = ''
 
+RUN_PORT = 8080
+
 # Override values from config_local.py
 try:
     import config_local
