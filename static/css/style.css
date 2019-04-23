@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+html, body {
+  font-family: Montserrat, sans-serif;
+  font-size: 15px;
+}
+
 .env-tab {
   display: none;
 }
