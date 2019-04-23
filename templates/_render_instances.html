@@ -1,0 +1,35 @@
+{% macro render_instances(instance_type, env, color) -%}
+  <!--{{ instance_type }}s-->
+  <div class="siimple-grid-col siimple-grid-col--3 siimple--text-center instances-ips">
+    <span class="siimple-tag siimple-tag--{{ color }}">{{ instance_type }}</span>
+    {% if env | attr('%ss' % instance_type) | length > 1 %}
+      <span class="siimple-tag siimple-tag--{{ color }}">x{{ env | attr('%ss' % instance_type) | length }}</span>
+    {% endif %}
+
+    {% for instance_ip in env | attr('%ss' % instance_type) %}
+      <div class="siimple-h3">{{ instance_ip }}</div>
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro render_commands(instance_type, env, color) -%}
+  <div class="siimple-tip siimple-tip--{{ color }} siimple-tip--question">
+    Connect to any of <strong>{{ instance_type }}</strong> instances using commands below
+  </div>
+  {% for instance_ip in env | attr('%ss' % instance_type) %}
+    <div class="siimple-alert siimple--color-white siimple--bg-dark">
+      {% set command = 'ssh ubuntu@{} -i ~/.ssh/gc2-ppe.pem'.format(instance_ip) %}
+      $ {{ command }}
+      <div class="siimple--float-right">
+        <span class="tooltipped tooltipped-n tooltipped-no-delay m-2 p-2 border" aria-label="Copied!">
+          <button
+            class="siimple-btn siimple-btn--grey siimple-btn--small copy-btn"
+            title="Copy to clipboard"
+            data-clipboard-text="{{ command }}"><i data-feather="clipboard"></i>
+              </button>
+        </span>
+      </div>
+    </div>
+  {% endfor %}
+{%- endmacro %}
+
