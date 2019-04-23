@@ -29,7 +29,9 @@ def run():
     setup_routes(app)
     setup_static_routes(app)
     aiohttp_jinja2.setup(
-        app, loader=jinja2.FileSystemLoader(str(config.TEMPLATES_DIR)))
+        app,
+        cache_size=0,  # reload on every change
+        loader=jinja2.FileSystemLoader(str(config.TEMPLATES_DIR)))
 
     uprint = partial(print, flush=True)
     port = int(config.RUN_PORT)

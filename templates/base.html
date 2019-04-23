@@ -7,11 +7,13 @@
   <link href="/static/favicon.ico" rel="icon" type="image/x-icon">
 
   <link rel="stylesheet" href="/node_modules/siimple/dist/siimple.min.css">
+  <link rel="stylesheet" href="/static/css/tooltip.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
 
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/moment/moment.js"></script>
   <script src="/node_modules/feather-icons/dist/feather.js"></script>
+  <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
   <script src="/static/js/main.js"></script>
 </head>
 <body>
@@ -29,7 +31,8 @@
     {% block content %}{% endblock %}
   </div>
   <script>
-    feather.replace()
+    feather.replace();
+    new ClipboardJS('.copy-btn');
   </script>
 </body>
 </html>
