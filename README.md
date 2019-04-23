@@ -76,6 +76,13 @@ and then (do the same for redeploys)
 $ git push heroku master
 ```
 
+To deploy from another laptop
+
+```bash
+$ heroku login
+$ heroku git:remote -a whereisqa
+```
+
 ### Donate
 
 Help Mel Gibson get his son back! [Do it right now!](https://gimmebackmyson.herokuapp.com/)
