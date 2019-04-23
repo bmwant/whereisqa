@@ -1,17 +1,24 @@
 {% import '_render_instances.html' as inst %}
 {% macro render_env(name, envs, active=False) -%}
+{% set
+  mapping = {
+    'webserver': 'blue',
+    'worker': 'green',
+    'scheduler': 'teal',
+  }
+%}
 <div id="tab-{{ name }}" class="env-tab" {% if active %}style="display:block"{% endif %}>
   <div class="siimple-grid-row">
-    {% for i_type in ('webserver', 'worker', 'scheduler') %}
-      {{ inst.render_instances(i_type, envs[name]) }}
+    {% for instance_type, color in mapping.items() %}
+      {{ inst.render_instances(instance_type, envs[name], color) }}
     {% endfor %}
     {# green, teal #}
   </div>
 
   <div class="siimple-grid-row">
     <div class="siimple-grid-col siimple-grid-col--9">
-      {% for instance_type in ('webserver', 'worker', 'scheduler') %}
-        {{ inst.render_commands(instance_type, envs[name]) }}
+      {% for instance_type, color in mapping.items() %}
+        {{ inst.render_commands(instance_type, envs[name], color) }}
       {% endfor %}
     </div>
   </div>
