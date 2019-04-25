@@ -24,7 +24,7 @@ def create_inventory():
     }
     ec2 = boto3.client(
         'ec2',
-        region_name='us-east-1',
+        region_name=config.AWS_DEFAULT_REGION,
         aws_access_key_id=config.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
     )

@@ -10,6 +10,7 @@ python = "^3.7"
 aiohttp = "^3.5"
 aiohttp-jinja2 = "^1.1"
 boto3 = "^1.9"
+jinja2 = "^2.10"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.4"
