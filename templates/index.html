@@ -10,12 +10,12 @@
     </div>
   </div>
   <div class="siimple-grid-row">
-    <!-- loops are for losers, right? -->
-    {% import '_render_env.html' as tab %}
-    {{ tab.render_env('qa', envs, active=True) }}
-    {{ tab.render_env('ux', envs) }}
-    {{ tab.render_env('ppe', envs) }}
-    {{ tab.render_env('prod', envs) }}
+      <!-- loops are for losers, right? -->
+      {% import '_render_env.html' as tab %}
+      {{ tab.render_env('qa', envs, active=True) }}
+      {{ tab.render_env('ux', envs) }}
+      {{ tab.render_env('ppe', envs) }}
+      {{ tab.render_env('prod', envs) }}
   </div>
 </div>
 {% endblock %}

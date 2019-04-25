@@ -7,6 +7,7 @@ html, body {
 
 .env-tab {
   display: none;
+  padding-left: 10px;
 }
 
 /* siimple overrides */
@@ -21,6 +22,10 @@ html, body {
 
 .siimple-alert .siimple--float-right {
   margin-right: -25px;
+}
+
+.siimple-alert {
+  font-size: 14px;
 }
 
 .siimple-btn--small {
