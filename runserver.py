@@ -1,4 +1,3 @@
-import os
 import base64
 from functools import partial
 
@@ -30,10 +29,12 @@ def run():
     setup_routes(app)
     setup_static_routes(app)
     aiohttp_jinja2.setup(
-        app, loader=jinja2.FileSystemLoader(str(config.TEMPLATES_DIR)))
+        app,
+        cache_size=0,  # reload on every change
+        loader=jinja2.FileSystemLoader(str(config.TEMPLATES_DIR)))
 
     uprint = partial(print, flush=True)
-    port = int(os.environ.get('PORT', 8080))
+    port = int(config.RUN_PORT)
 
     uprint('Running aiohttp {}'.format(aiohttp.__version__))
     web.run_app(app, print=uprint, port=port)
