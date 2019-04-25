@@ -1,10 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+html, body {
+  font-family: Montserrat, sans-serif;
+  font-size: 15px;
+}
+
 .env-tab {
   display: none;
+}
+
+/* siimple overrides */
+.siimple-h3 {
+  font-size: 24px;
 }
 
 .siimple-tabs-item {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+.siimple-alert .siimple--float-right {
+  margin-right: -25px;
+}
+
+.siimple-btn--small {
+  padding: 0 5px;
+}
+
+.m-2 {
+  padding: 8px !important;
+}
+
+.p-2 {
+  padding: 8px !important;
 }
 
 .instances-ips .siimple-h3:not(:first-child) {
