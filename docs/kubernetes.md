@@ -38,6 +38,8 @@ $ kubectl apply -f kubernetes/secret.yml
 $ kubectl get secrets
 ```
 
+Create deployment
+
 ```bash
 $ kubectl create -f kubernetes/app-deployment.yml
 $ kubectl get deployments
@@ -68,6 +70,7 @@ $ minikube service whereisqa --url
 and visit the url provided.
 
 ### Scaling
+
 Launch more replicas for specific deployment
 
 ```bash
@@ -80,17 +83,48 @@ Scale down to 1 replica
 $ kubectl scale --replicas=1 deployment whereisqa
 ```
 
+### Deploying new version of the code
+
+Set a new image to use and confirm successful rollout 
+
+```bash
+$ kubectl set image deployments/whereisqa whereisqa=457398059321.dkr.ecr.us-east-1.amazonaws.com/whereisqa:v2
+$ kubectl rollout status deployments/whereisqa
+deployment "whereisqa" successfully rolled out
+```
+
+Check pods and make sure they use new updated image
+
+```bash
+$ kubectl get pods
+$ kubectl describe pods | grep -i image
+```
+
+To perform a [rollback](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#rolling-back-a-deployment) 
+to the previous version
+
+```bash
+$ kubectl rollout undo deployments/whereisqa
+deployment.extensions/whereisqa rolled back
+```
+
+If you want to be reverted to some specific revision 
+```bash
+$ kubectl rollout history deployment/whereisqa
+$ kubectl rollout undo deployment/whereisqa --to-revision=2
+```
+
 ### Troubleshooting
 
 * `Waiting for SSH access...` takes too long
 
 ```bash
-$ rm -rf ~/.minikube/machines/minikube/hyperkit.pid
+$ rm -f ~/.minikube/machines/minikube/hyperkit.pid
 ```
 
-* `Unable to validate`
+* `botocore.exceptions.ClientError: An error occurred (AuthFailure) when calling the DescribeInstances operation: AWS was not able to validate the provided access credentials`
 
-restart docker machine
+Restart docker machine first and then restart minikube (issue with clock sync)
 
 ```bash
 $ minikube stop

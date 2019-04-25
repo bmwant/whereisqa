@@ -10,12 +10,15 @@
     </div>
   </div>
   <div class="siimple-grid-row">
-      <!-- loops are for losers, right? -->
-      {% import '_render_env.html' as tab %}
-      {{ tab.render_env('qa', envs, active=True) }}
-      {{ tab.render_env('ux', envs) }}
-      {{ tab.render_env('ppe', envs) }}
-      {{ tab.render_env('prod', envs) }}
+    {% import '_render_env.html' as tab %}
+    {% for env_name in envs.keys() %}
+      {% if loop.first %}
+        {% set active = True %}
+      {% else %}
+        {% set active = False %}
+      {% endif %}
+      {{ tab.render_env(env_name, envs, active=active) }}
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

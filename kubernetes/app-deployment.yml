@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
         - name: whereisqa
-          image: 457398059321.dkr.ecr.us-east-1.amazonaws.com/whereisqa:latest
+          image: 457398059321.dkr.ecr.us-east-1.amazonaws.com/whereisqa:v1
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
