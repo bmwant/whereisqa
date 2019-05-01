@@ -1,10 +1,8 @@
 ## whereisqa
 
-[![](https://img.shields.io/travis/bmwant/whereisqa.svg)](https://travis-ci.org/bmwant/whereisqa)
-
+[![Build Status](https://travis-ci.org/bmwant/whereisqa.svg?branch=master)](https://travis-ci.org/bmwant/whereisqa)
 
 Latest updated info about current infrastructure
-
 
 ### Features
 
