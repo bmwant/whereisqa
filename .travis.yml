@@ -2,14 +2,23 @@ dist: xenial  # required for Python >= 3.7
 language: python
 python:
   - "3.7"
-# install poetry
-before_install:
-  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
-  - export PATH=$HOME/.poetry/bin:$PATH
-  - poetry self:update --preview
-# command to install dependencies
-install:
-  - poetry install
-# command to run tests
-script:
-  - poetry run pytest -sv
+
+jobs:
+  include:
+    - stage: test
+      # install poetry
+      before_install:
+        - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+        - export PATH=$HOME/.poetry/bin:$PATH
+        - poetry self:update --preview
+      # command to install dependencies
+      install:
+        - poetry install
+      # command to run tests
+      script:
+        - poetry run pytest -sv
+
+    - stage: build image
+      if: branch = master
+      script:
+        - echo "Building image"
