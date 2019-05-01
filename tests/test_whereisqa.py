@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-"""Tests for `whereisqa` package."""
-
 import pytest
-
 
 
 @pytest.fixture

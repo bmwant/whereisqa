@@ -1,0 +1,14 @@
+dist: xenial  # required for Python >= 3.7
+language: python
+python:
+  - "3.7"
+# install poetry
+before_install:
+  - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+  - poetry self:update --preview
+# command to install dependencies
+install:
+  - poetry install
+# command to run tests
+script:
+  - poetry run pytest -sv
