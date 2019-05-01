@@ -2,7 +2,8 @@ dist: xenial  # required for Python >= 3.7
 language: python
 python:
   - "3.7"
-
+services:
+  - docker
 jobs:
   include:
     - stage: test
@@ -20,5 +21,6 @@ jobs:
 
     - stage: build image
       if: branch = master
+      install: skip
       script:
-        - echo "Building image"
+        - docker build -t whereisqa .
