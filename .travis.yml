@@ -6,21 +6,32 @@ services:
   - docker
 jobs:
   include:
-    - stage: test
-      # install poetry
-      before_install:
-        - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
-        - export PATH=$HOME/.poetry/bin:$PATH
-        - poetry self:update --preview
-      # command to install dependencies
-      install:
-        - poetry install
-      # command to run tests
-      script:
-        - poetry run pytest -sv
+#    - stage: test
+#      # install poetry
+#      before_install:
+#        - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+#        - export PATH=$HOME/.poetry/bin:$PATH
+#        - poetry self:update --preview
+#      # command to install dependencies
+#      install:
+#        - poetry install
+#      # command to run tests
+#      script:
+#        - poetry run pytest -sv
 
-    - stage: build image
+    - stage: build and push image
       if: branch = master
-      install: skip
+      env:
+        # ECR_REPOSITORY
+        - secure: "Kdx0RRyzi8+unm3NhGRcqPJASaBMMtR4otiATOv330Ws6Q60Au8E1hDduZYT9s+y8IIs19YaTI/rk8NPXN+BSzNZ7p9xiezlci5Wp9RQ4DBB9BjmGCHiUWWN3d/OhZgMQQejDrPethNmy2pT9o3AYdb3Nh/23Wch5Fl1YpYL2y+5XvfcQOFfmEen4RFQCKbafflbnDaT3S4CwWvRmZjhpbc+2jOqv49DnjXAUWLHOI+FfdaGbk5286/Yz71Uli40o+YvFfeXLeuqoymbb9AhwY3kFTZ6hDJTdRgR4Nc4Bnf8xGmohjnkM7kCn9ktA3C5ZaUUQ+TE3RPUiMMmDG+vjp6SCG3BfU6LoitW9HcxVMFnLGtHDJfxVWSBSC8ZNhm7NSWTQOOjsxY4oq4i5KMQInAY2wh9JZ+2F+PnhYSgfLto+el9pGeHaqu7d3uxEOSF4ZTMhIkJFReIVoFzvCIJXxPOwduPgv5LB77IPP2wUj9vztKxbwMklUhaBgMHPxzi48BB01Bsp47SAqZGk4b2XdpWhDMVorIGeHraSNPO9DJmfcHuWeikpJqHkjVIjnFr1AU9caKSsACStTmPBWxIyfklZBuBh5H8bdPNE8b3wLYBDd8DpqIU+VVPe1Z8zjLjyi3d9ZZTk1Iwg9rIrY1auzVsorGg5xsQtrpQP4K6Lgo="
+        # AWS_ACCESS_KEY_ID
+        - secure: "EBCBUUNP2H+O+zB4F8uNjJiqk6cakDLj1Nq5Ol2ejS9N6Fyt6LYD+F+JQC7gsV+0Jmo8uOElb1w9/7DRgB1kHNPvlOeJgaLq3wsLJTwTXVNTkvQqSGqjP4QLXghCD1uCOia+w1a6jOlUXmO3Fv7SckBMDafOv4vMW/TUTO0wjsYSoDYqgzqdkKUZBUEw1mCwgM2+KZXVGVu5W+3+k3aZxSsE4gahSeePT7YTIL9JnwuE4kxKdUuyPAnbB+FHTL9m8WVsL6Fi8wuYn/aaZeB90u45+CRNeUgPcq7aeRsNAo8+IHMpNIRJf7geLjooYhOV1ThUhkpscRyBkkf+M+9UwHgSqHCPCNkhqpRmqX+EfI+gKt5yl7mbf/L7skI5vaObqv2hWeHvTf+ETYR2fykHCriE/DOa9jPJgFjhNESCV8mbgBx/0m3539cOUOao2Adin225Ifa740UGfcLLKTyuKbMOBoQpSd6d2px/x4Uq3h4GqgM9qPeb4WGXJzFGA7qYVGCS+yLRT6MN7q/B+M6QIZLnMClCCn0H6E4fx39G5hzuR0udaix5Io+SwSJD1oTLa/7KsQ2/PMNH7rIWQQ317E67b/2djrw0YPSWUTz7prTu7lPiDSYUysLqpHP8tkORszPCQG/JJwHP5WceE0iqhUPfvjRWLXzRZD/5oIh8u5g="
+        # AWS_SECRET_ACCESS_KEY
+        - secure: "F1FzqjAhmK1EHZT0jr/YBRyD1fOn2QigJomZ9xDdASErnPYKTDSWvUUYqWGGWwIqIiusGj2c4mybVfcCnlsiHovu7ILfGrdg4QwmOlIyLVfmh2Y+KqRRUfgQwQ1OSu+lsRfu0+CXwVobdmqAKKK5kl08+tu7etWwvJ8zDz1pYMjiqvy0iTLto0+q0ca4GsH+gWv3/uQdXV3r4D5Pfgs1kAWZhIukAV97NIWE6fTdQFx+jdw3yWL71X6l53ZUXbFjs8/ublQicE9P+kWRCzNYQ1LOzZ3KBsCkMiS6Eno9DGBMSkXRbqx0TAMLPnJK2TJZRf4xy0nGzEWNJKrroA+OhqID365++9oRGxLRWH+McmooOG0R8pGMRv1vsXSu/irP1yE0REeekHF2DBwfam2OLPbh8rkb3EX7Hra3QExCPz/O8WlmRQuHH4iByEwj85Ib7iZm8PXfA6DDIBEKsKygqt9FenN9pk7w1Tfp3gD6wGyaEoK6HodFQiYhgInK0VJ6nDxgqq+umb48RVUvW8lCarnSeOM4XcEfd0VCBSgzeEmAF5Ytga7cIoPTJlFAWS8FOJERWWv7lAOWjtQWjYXsYUrz8BYaNipVZ6JaomdGJaXwv2gLjymrr5t15HN3Ud9LEVQeatHgmiLbdmfPW7YXLySOgYj4fqXU1ELwSGz73x8="
+      install:
+        - pip install --user awscli
       script:
         - docker build -t whereisqa .
+        - $(aws ecr get-login --no-include-email --region us-east-1)
+        - docker tag whereisqa:latest ${ECR_REPOSITORY}/whereisqa:latest
+        - docker push ${ECR_REPOSITORY}/whereisqa:latest
