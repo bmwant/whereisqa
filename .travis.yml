@@ -29,7 +29,7 @@ jobs:
         # AWS_SECRET_ACCESS_KEY
         - secure: "F1FzqjAhmK1EHZT0jr/YBRyD1fOn2QigJomZ9xDdASErnPYKTDSWvUUYqWGGWwIqIiusGj2c4mybVfcCnlsiHovu7ILfGrdg4QwmOlIyLVfmh2Y+KqRRUfgQwQ1OSu+lsRfu0+CXwVobdmqAKKK5kl08+tu7etWwvJ8zDz1pYMjiqvy0iTLto0+q0ca4GsH+gWv3/uQdXV3r4D5Pfgs1kAWZhIukAV97NIWE6fTdQFx+jdw3yWL71X6l53ZUXbFjs8/ublQicE9P+kWRCzNYQ1LOzZ3KBsCkMiS6Eno9DGBMSkXRbqx0TAMLPnJK2TJZRf4xy0nGzEWNJKrroA+OhqID365++9oRGxLRWH+McmooOG0R8pGMRv1vsXSu/irP1yE0REeekHF2DBwfam2OLPbh8rkb3EX7Hra3QExCPz/O8WlmRQuHH4iByEwj85Ib7iZm8PXfA6DDIBEKsKygqt9FenN9pk7w1Tfp3gD6wGyaEoK6HodFQiYhgInK0VJ6nDxgqq+umb48RVUvW8lCarnSeOM4XcEfd0VCBSgzeEmAF5Ytga7cIoPTJlFAWS8FOJERWWv7lAOWjtQWjYXsYUrz8BYaNipVZ6JaomdGJaXwv2gLjymrr5t15HN3Ud9LEVQeatHgmiLbdmfPW7YXLySOgYj4fqXU1ELwSGz73x8="
       install:
-        - pip install --user awscli
+        - pip install awscli
       script:
         - docker build -t whereisqa .
         - $(aws ecr get-login --no-include-email --region us-east-1)
