@@ -31,6 +31,8 @@ jobs:
       install:
         - pip install awscli
       script:
+        # Fail fast
+        - set -e
         - docker build -t whereisqa .
         - $(aws ecr get-login --no-include-email --region us-east-1)
         - docker tag whereisqa:latest ${ECR_REPOSITORY}/whereisqa:latest
