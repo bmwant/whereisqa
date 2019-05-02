@@ -6,18 +6,18 @@ services:
   - docker
 jobs:
   include:
-#    - stage: test
-#      # install poetry
-#      before_install:
-#        - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
-#        - export PATH=$HOME/.poetry/bin:$PATH
-#        - poetry self:update --preview
-#      # command to install dependencies
-#      install:
-#        - poetry install
-#      # command to run tests
-#      script:
-#        - poetry run pytest -sv
+    - stage: test
+      # install poetry
+      before_install:
+        - curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+        - export PATH=$HOME/.poetry/bin:$PATH
+        - poetry self:update --preview
+      # command to install dependencies
+      install:
+        - poetry install
+      # command to run tests
+      script:
+        - poetry run pytest -sv
 
     - stage: build and push image
       if: branch = master
@@ -33,7 +33,8 @@ jobs:
       script:
         # Fail fast
         - set -e
-        - docker build -t whereisqa .
         - $(aws ecr get-login --no-include-email --region us-east-1)
-        - docker tag whereisqa:latest ${ECR_REPOSITORY}/whereisqa:latest
+        - export TAG=$(git rev-parse --short=8 HEAD)
+        - docker build -t ${ECR_REPOSITORY}/whereisqa:latest -t ${ECR_REPOSITORY}/whereisqa:${TAG} .
         - docker push ${ECR_REPOSITORY}/whereisqa:latest
+        - docker push ${ECR_REPOSITORY}/whereisqa:${TAG}
