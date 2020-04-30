@@ -11,7 +11,7 @@
     "dependencies": {
         "clipboard": "^2.0.4",
         "feather-icons": "^4.21.0",
-        "jquery": "^3.3.1",
+        "jquery": "^3.5.0",
         "moment": "^2.20.1",
         "siimple": "^3.3.0"
     },
